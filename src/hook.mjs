@@ -342,6 +342,16 @@ export async function handlePostToolUse(input, options = {}) {
     const toolName = String(input?.tool_name ?? "");
     if (isSearchTool(toolName)) return handleSearchRerank(input, options);
     if (!isTaskTool(input)) return {};
+    // pstack owns panel aggregation — do not inject STOP_CONTEXT mid-panel.
+    const receipt = await resolveReceipt(input, options);
+    if (isPstackOwnedReceipt(receipt)) {
+      return { additional_context: sufficiencyContext(receipt) };
+    }
+    const toolInput =
+      input.tool_input && typeof input.tool_input === "object" ? input.tool_input : {};
+    if (isExplicitOrchestratedTask(toolInput, receipt)) {
+      return { additional_context: PSTACK_BYPASS_CONTEXT };
+    }
     const raw = input.tool_output ?? input.result ?? input.content ?? "";
     const text = typeof raw === "string" ? raw : JSON.stringify(raw);
     if (!text.trim() || looksSecret(text)) return {};
