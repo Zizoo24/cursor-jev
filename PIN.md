@@ -5,7 +5,7 @@ Pinned build for the Jev↔pstack fabric (workflow receipts + pstack orchestrati
 | Field | Value |
 | --- | --- |
 | Branch | `fabric/pstack-bypass-and-pin` |
-| SHA | see `build-pin.json` → `sha` (set after the fabric commit) |
+| SHA | `b5e53d654d2a0987313ca1fc08747508bc171c2a` (fabric feature; tip may be later pin-doc commits) |
 | Doctor | `node scripts/doctor.mjs` |
 
 ## Required automated tests
