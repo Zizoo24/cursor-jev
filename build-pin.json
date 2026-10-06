@@ -1,5 +1,5 @@
 {
-  "sha": "PENDING",
+  "sha": "b5e53d654d2a0987313ca1fc08747508bc171c2a",
   "branch": "fabric/pstack-bypass-and-pin",
   "requiredTests": [
     "test/pstack-bypass.test.mjs",

@@ -6,11 +6,9 @@
 import { spawnSync } from "node:child_process";
 import { readFile, access } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-import { createRequire } from "node:module";
+import { pathToFileURL, fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const require = createRequire(import.meta.url);
 
 function ok(msg) {
   console.log(`PASS  ${msg}`);
@@ -119,7 +117,7 @@ for (const [label, files] of suites) {
 
 // Ambiguous Task still routed (not bypass) — structural assert without network.
 try {
-  const { isExplicitOrchestratedTask } = await import(join(root, "src/hook.mjs"));
+  const { isExplicitOrchestratedTask } = await import(pathToFileURL(join(root, "src", "hook.mjs")).href);
   if (
     isExplicitOrchestratedTask({
       subagent_type: "generalPurpose",
