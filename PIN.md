@@ -5,7 +5,7 @@ Pinned build for the Jev↔pstack fabric (workflow receipts + pstack orchestrati
 | Field | Value |
 | --- | --- |
 | Branch | `fabric/pstack-bypass-and-pin` |
-| SHA | `b5e53d654d2a0987313ca1fc08747508bc171c2a` (fabric feature; tip may be later pin-doc commits) |
+| SHA | `88cb0bd8d6b1a7ab310730a7665d200d6b5d7fc9` (includes postToolUse PSTACK no-steer; fabric base `b5e53d654d2a`) |
 | Doctor | `node scripts/doctor.mjs` |
 
 ## Required automated tests
@@ -18,4 +18,4 @@ Pinned build for the Jev↔pstack fabric (workflow receipts + pstack orchestrati
 
 ## Invariant
 
-Exempt only **pstack-owned orchestration** (Task rewrite / fan-out / model override) when `workflow_choice=PSTACK` and `workflow_owner=pstack`, or when `isExplicitOrchestratedTask` matches. Do **not** exempt pstack from scope, shell, ready, or learning.
+Exempt only **pstack-owned orchestration** (Task rewrite / fan-out / model override / postToolUse STOP_CONTEXT panel steer) when `workflow_choice=PSTACK` and `workflow_owner=pstack`, or when `isExplicitOrchestratedTask` matches. Do **not** exempt pstack from scope, shell, ready, or learning.
